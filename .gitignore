@@ -1,0 +1,6 @@
+node_modules/
+data/
+.env
+.claude/
+# originais em PNG das imagens geradas (as versoes usadas estao em public/img)
+media/*.png
