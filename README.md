@@ -24,7 +24,8 @@ Variáveis de ambiente opcionais:
 
 ## Estrutura
 
-- `server.js` — estáticos, `/vendor/*` (GSAP, Lenis, Iconify direto do node_modules), `GET /api/config`, `POST /api/orcamento`.
+- `server.js` — estáticos de `public/`, `GET /api/config`, `POST /api/orcamento`.
+- `public/vendor/` — GSAP, ScrollTrigger, Lenis e Iconify copiados do node_modules por `npm run vendor` (também roda no `npm run build`). Ficam versionados porque na Vercel só `public/` é servido como estático.
 - `public/js/hero.js` — sequência de 121 quadros num canvas, guiada por ScrollTrigger (pin + scrub).
 - `public/js/main.js` — Lenis (único motor de smooth scroll), revelações por palavra, etapas, calculadora, formulário.
 

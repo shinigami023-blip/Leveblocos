@@ -18,21 +18,8 @@ app.use((req, res, next) => {
   next();
 });
 
-// Bibliotecas servidas direto do node_modules (sem bundler).
-const vendor = {
-  'gsap.min.js': 'gsap/dist/gsap.min.js',
-  'ScrollTrigger.min.js': 'gsap/dist/ScrollTrigger.min.js',
-  'lenis.min.js': 'lenis/dist/lenis.min.js',
-  'lenis.css': 'lenis/dist/lenis.css',
-  'iconify-icon.min.js': 'iconify-icon/dist/iconify-icon.min.js'
-};
-app.get('/vendor/:file', (req, res) => {
-  const rel = vendor[req.params.file];
-  if (!rel) return res.sendStatus(404);
-  res.setHeader('Cache-Control', 'public, max-age=604800');
-  res.sendFile(path.join(__dirname, 'node_modules', rel));
-});
-
+// As bibliotecas (GSAP, Lenis, Iconify) ficam em public/vendor, copiadas por scripts/copy-vendor.js:
+// na Vercel só public/ é servido como estático, e o node_modules não acompanha a função.
 app.use(express.static(path.join(__dirname, 'public'), {
   extensions: ['html'],
   setHeaders(res, file) {

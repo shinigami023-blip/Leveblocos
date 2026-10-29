@@ -7,7 +7,8 @@
   "type": "commonjs",
   "scripts": {
     "frames": "node scripts/extract-frames.js",
-    "build": "node scripts/check.js",
+    "vendor": "node scripts/copy-vendor.js",
+    "build": "node scripts/copy-vendor.js && node scripts/check.js",
     "start": "node server.js",
     "dev": "node --watch server.js"
   },

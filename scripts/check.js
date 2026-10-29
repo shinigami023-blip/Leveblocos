@@ -15,7 +15,6 @@ for (const prefix of ['m', 'f', 'x']) {
   }
 }
 
-const vendor = ['gsap.min.js', 'ScrollTrigger.min.js', 'lenis.min.js', 'lenis.css', 'iconify-icon.min.js'];
 const arquivos = ['index.html', '404.html', 'css/style.css', 'js/main.js', 'js/hero.js'];
 for (const arq of arquivos) {
   const p = path.join(pub, arq);
@@ -24,9 +23,7 @@ for (const arq of arquivos) {
   const refs = [...txt.matchAll(/(?:src|href|url\()\s*=?\s*["']?(\/?(?:img|css|js|frames|vendor|fonts)\/[^"')\s]+)/g)].map((m) => m[1]);
   for (const ref of refs) {
     const limpo = ref.replace(/^\//, '').split(/[?#]/)[0];
-    if (limpo.startsWith('vendor/')) {
-      if (!vendor.includes(limpo.slice(7))) falhas.push(`${arq}: vendor desconhecido ${ref}`);
-    } else if (!fs.existsSync(path.join(pub, limpo))) {
+    if (!fs.existsSync(path.join(pub, limpo))) {
       falhas.push(`${arq}: referência quebrada ${ref}`);
     }
   }
